@@ -19,7 +19,7 @@ export const serverEnvSchema = z.object({
   // Model identifiers — configurable so they can be updated without code changes.
   // Run scripts/verify-models.ts to confirm your API key can access these models.
   GEMINI_EMBEDDING_MODEL: z.string().default('gemini-embedding-001'),
-  GEMINI_GENERATION_MODEL: z.string().default('gemini-3.8-flash'),
+  GEMINI_GENERATION_MODEL: z.string().default('gemini-3.5-flash-lite'),
 
   // Supabase — server-only credentials
   NEXT_PUBLIC_SUPABASE_URL: z

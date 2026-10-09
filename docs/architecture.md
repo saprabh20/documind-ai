@@ -109,7 +109,7 @@ POST /api/questions
   ├─ Generate query embedding via gemini-embedding-001
   ├─ pgvector cosine similarity search → top-k chunks
   ├─ Build context from retrieved chunks (with source metadata)
-  ├─ Call gemini-3.8-flash with structured prompt:
+  ├─ Call gemini-3.5-flash-lite with structured prompt:
   │   ├── System: grounding rules + untrusted-content wrapper
   │   └── User: question + retrieved passages with chunk IDs
   ├─ Parse LLM response for answer text + cited chunk IDs
@@ -173,7 +173,7 @@ Uploads and deletes are disabled entirely in production via `ENABLE_UPLOAD=false
 # Server-only (never NEXT_PUBLIC_)
 GEMINI_API_KEY=
 GEMINI_EMBEDDING_MODEL=gemini-embedding-001     # configurable — verify with scripts/verify-models.ts
-GEMINI_GENERATION_MODEL=gemini-3.8-flash       # configurable — verify with scripts/verify-models.ts
+GEMINI_GENERATION_MODEL=gemini-3.5-flash-lite  # configurable — verify with scripts/verify-models.ts
 SUPABASE_SERVICE_ROLE_KEY=
 
 # Browser-safe

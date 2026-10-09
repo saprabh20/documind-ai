@@ -12,7 +12,7 @@ Portfolio project targeting Software Engineer, Full-Stack Engineer, and Applied 
 - **Frontend**: Next.js 16, React 19, TypeScript, Tailwind CSS v4
 - **Backend**: Next.js Route Handlers, Node.js runtime
 - **Database**: Supabase PostgreSQL + pgvector
-- **AI**: Google Gen AI SDK (`@google/genai`), `gemini-embedding-001` (768-dim, verified), `gemini-3.8-flash` (default generation)
+- **AI**: Google Gen AI SDK (`@google/genai`), `gemini-embedding-001` (768-dim, verified), `gemini-3.5-flash-lite` (default generation)
 - **Testing**: Vitest 5
 - **Deploy**: Vercel Hobby + Supabase Free
 
@@ -44,7 +44,7 @@ Required in `.env.local` (never committed — see `.env.local.example`):
 ```
 GEMINI_API_KEY=
 GEMINI_EMBEDDING_MODEL=gemini-embedding-001  # verified working; produces 768-dim embeddings
-GEMINI_GENERATION_MODEL=gemini-3.8-flash    # verified reachable (503 = high demand, not a config failure)
+GEMINI_GENERATION_MODEL=gemini-3.5-flash-lite  # verified reachable (Oct 2026)
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
@@ -85,9 +85,9 @@ Both document and query embeddings use `outputDimensionality: 768`.
 
 ## Generation Models (Free Tier, Oct 2026)
 
-Available on free tier: `gemini-2.5-flash` (legacy, existing projects), `gemini-3.5-flash-lite`, `gemini-3.8-flash`.
-Default is `gemini-3.8-flash` (verified reachable — HTTP 503 during verification was high demand, not a config failure).
-Generation is not required until Phase 3. If access issues arise then, update `GEMINI_GENERATION_MODEL` in `.env.local`.
+Available on free tier: `gemini-3.5-flash-lite` (default, verified), `gemini-3.8-flash` (higher capacity; daily quota may exhaust), `gemini-2.5-flash` (legacy, existing projects only).
+Default is `gemini-3.5-flash-lite` (verified reachable Oct 2026; `gemini-3.8-flash` hit 429 quota during final verification).
+If access issues arise, update `GEMINI_GENERATION_MODEL` in `.env.local` and re-run `scripts/verify-models.ts`.
 
 ## File Organization
 

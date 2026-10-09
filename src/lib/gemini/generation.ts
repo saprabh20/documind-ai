@@ -7,7 +7,7 @@ const RETRYABLE_STATUS_CODES = [429, 500, 502, 503, 504]
 const NON_RETRYABLE_STATUS_CODES = [400, 401, 403]
 
 function getModelName(): string {
-  return process.env.GEMINI_GENERATION_MODEL ?? 'gemini-3.8-flash'
+  return process.env.GEMINI_GENERATION_MODEL ?? 'gemini-3.5-flash-lite'
 }
 
 function sleep(ms: number): Promise<void> {

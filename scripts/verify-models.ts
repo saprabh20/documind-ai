@@ -20,7 +20,7 @@ import { GoogleGenAI } from '@google/genai'
 loadEnvConfig(process.cwd())
 
 const EMBEDDING_MODEL = process.env.GEMINI_EMBEDDING_MODEL ?? 'gemini-embedding-001'
-const GENERATION_MODEL = process.env.GEMINI_GENERATION_MODEL ?? 'gemini-3.8-flash'
+const GENERATION_MODEL = process.env.GEMINI_GENERATION_MODEL ?? 'gemini-3.5-flash-lite'
 const API_KEY = process.env.GEMINI_API_KEY
 
 function printHeader(): void {
@@ -111,8 +111,8 @@ async function verifyGenerationModel(ai: GoogleGenAI): Promise<boolean> {
       console.error(`   → Model "${GENERATION_MODEL}" was not found or not available.`)
       console.error(`     Set GEMINI_GENERATION_MODEL in .env.local to a supported model.`)
       console.error(`     Free-tier options (Oct 2026):`)
-      console.error(`       gemini-3.8-flash        (default — verified reachable)`)
-      console.error(`       gemini-3.5-flash-lite   (alternative free-tier option)`)
+      console.error(`       gemini-3.5-flash-lite   (default — verified reachable)`)
+      console.error(`       gemini-3.8-flash        (higher capacity; daily quota may exhaust on free tier)`)
       console.error(`       gemini-2.5-flash        (legacy — restricted to existing projects)`)
       console.error(`     Current models: https://ai.google.dev/gemini-api/docs/models`)
     } else if (message.includes('403') || message.includes('permission')) {

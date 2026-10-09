@@ -30,7 +30,7 @@ All variables apply to the **Production** environment unless noted.
 |----------|----------|-------|
 | `GEMINI_API_KEY` | ✅ | From Google AI Studio. Server-only — never `NEXT_PUBLIC_`. |
 | `GEMINI_EMBEDDING_MODEL` | ✅ | Default: `gemini-embedding-001` |
-| `GEMINI_GENERATION_MODEL` | ✅ | Default: `gemini-3.8-flash` |
+| `GEMINI_GENERATION_MODEL` | ✅ | Default: `gemini-3.5-flash-lite` |
 | `NEXT_PUBLIC_SUPABASE_URL` | ✅ | From Supabase → Project Settings → API. Safe to expose. |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | ✅ | From Supabase → Project Settings → API. Safe to expose. |
 | `SUPABASE_SERVICE_ROLE_KEY` | ✅ | From Supabase → Project Settings → API. **Server-only.** Never prefix with `NEXT_PUBLIC_`. |

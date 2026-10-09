@@ -159,7 +159,7 @@ The chunk IDs are embedded in the prompt so the LLM can reference them in citati
 
 Module: `src/lib/gemini/generation.ts`
 
-Model: read from `process.env.GEMINI_GENERATION_MODEL` (default: `gemini-3.8-flash`)
+Model: read from `process.env.GEMINI_GENERATION_MODEL` (default: `gemini-3.5-flash-lite`)
 
 Prompt structure:
 
@@ -241,7 +241,7 @@ export const RAG_CONFIG = {
 
 // Model names are NOT in RAG_CONFIG — they come from environment variables:
 //   process.env.GEMINI_EMBEDDING_MODEL  (default: 'gemini-embedding-001')
-//   process.env.GEMINI_GENERATION_MODEL (default: 'gemini-3.8-flash')
+//   process.env.GEMINI_GENERATION_MODEL (default: 'gemini-3.5-flash-lite')
 // Verify with: npx tsx scripts/verify-models.ts
 ```
 

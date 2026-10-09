@@ -48,9 +48,9 @@ describe('serverEnvSchema', () => {
       expect(result.GEMINI_EMBEDDING_MODEL).toBe('gemini-embedding-001')
     })
 
-    it('defaults GEMINI_GENERATION_MODEL to gemini-3.8-flash', () => {
+    it('defaults GEMINI_GENERATION_MODEL to gemini-3.5-flash-lite', () => {
       const result = parseEnv(validBase)
-      expect(result.GEMINI_GENERATION_MODEL).toBe('gemini-3.8-flash')
+      expect(result.GEMINI_GENERATION_MODEL).toBe('gemini-3.5-flash-lite')
     })
 
     it('defaults ENABLE_UPLOAD to true', () => {
@@ -90,7 +90,7 @@ describe('serverEnvSchema', () => {
       const result = parseEnv({
         ...validBase,
         GEMINI_EMBEDDING_MODEL: 'gemini-embedding-001',
-        GEMINI_GENERATION_MODEL: 'gemini-3.8-flash',
+        GEMINI_GENERATION_MODEL: 'gemini-3.5-flash-lite',
         ENABLE_UPLOAD: 'true',
         ENABLE_DELETE: 'false',
       })
