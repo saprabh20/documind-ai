@@ -25,6 +25,10 @@ export const RAG_CONFIG = {
   /** Number of chunks to retrieve per query (top-k). */
   topK: 5,
 
+  // Starting value to be tuned via the evaluation framework.
+  // Chunks below this similarity threshold are excluded from generation context.
+  minSimilarityThreshold: 0.0,
+
   // ---- Embeddings ----
   /** Must match the vector(N) dimension in the database schema.
    *  Changing this requires re-running all embeddings and a schema migration. */

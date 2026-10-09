@@ -142,6 +142,37 @@ export interface EvalRunSummary extends EvalRun {
 }
 
 // ============================================================
+// RAG pipeline internal types
+// ============================================================
+
+/** A retrieved chunk formatted as a numbered source for the generation prompt. */
+export interface RetrievedSource {
+  sourceId: string          // "SOURCE_1", "SOURCE_2", etc.
+  chunkId: string
+  filename: string
+  pageNumber: number | null
+  content: string
+}
+
+/** Raw output from the generation model before citation validation. */
+export interface GenerationResult {
+  answer: string
+  citedSourceIds: string[]  // source IDs the model referenced
+  cannotAnswer: boolean
+}
+
+/** Full RAG pipeline response after retrieval, generation, and citation validation. */
+export interface RagResponse {
+  answer: string
+  citations: Citation[]
+  retrieval: {
+    chunksRetrieved: number
+    latencyMs: number
+  }
+  cannotAnswer: boolean
+}
+
+// ============================================================
 // Error types
 // ============================================================
 
