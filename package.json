@@ -11,6 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
+    "seed:demo": "npx tsx scripts/seed-demo-docs.ts",
     "seed:eval": "npx tsx scripts/seed-eval-dataset.ts",
     "eval": "npx tsx scripts/run-evaluation.ts"
   },

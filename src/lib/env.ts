@@ -35,6 +35,13 @@ export const serverEnvSchema = z.object({
   // Feature flags — set to 'false' in the public deployment
   ENABLE_UPLOAD: z.enum(['true', 'false']).default('true'),
   ENABLE_DELETE: z.enum(['true', 'false']).default('true'),
+
+  // Rate limiting — server-only HMAC secret for pseudonymising client IPs.
+  // Must never use the NEXT_PUBLIC_ prefix. Must never be committed.
+  // Generate with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+  RATE_LIMIT_SECRET: z
+    .string()
+    .min(32, 'RATE_LIMIT_SECRET must be at least 32 characters'),
 })
 
 export type ServerEnv = z.infer<typeof serverEnvSchema>

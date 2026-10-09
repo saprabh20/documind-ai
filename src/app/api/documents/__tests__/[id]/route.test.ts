@@ -21,6 +21,7 @@ const BASE_ENV = {
   NEXT_PUBLIC_SUPABASE_ANON_KEY: 'fake-anon-key',
   ENABLE_UPLOAD: 'true' as const,
   ENABLE_DELETE: 'true' as const,
+  RATE_LIMIT_SECRET: 'a'.repeat(32),
 }
 
 const VALID_UUID = '123e4567-e89b-12d3-a456-426614174000'

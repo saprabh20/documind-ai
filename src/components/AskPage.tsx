@@ -7,6 +7,14 @@ import AnswerDisplay from '@/components/AnswerDisplay'
 
 type LoadingState = 'idle' | 'searching' | 'generating'
 
+const SUGGESTED_QUESTIONS = [
+  'How many days of PTO do employees receive per year?',
+  'What are the rate limits for the Meridian API free tier?',
+  'What is the maximum file upload size on the Aurora Platform?',
+  'What is the parental leave policy?',
+  'How does webhook authentication work in Meridian?',
+]
+
 export default function AskPage() {
   const [question, setQuestion] = useState('')
   const [documentList, setDocumentList] = useState<Document[]>([])
@@ -90,6 +98,24 @@ export default function AskPage() {
         <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
           Ask questions about your uploaded documents. Answers are grounded in retrieved evidence.
         </p>
+      </div>
+
+      <div className="mb-6">
+        <p className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-2">
+          Try asking
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {SUGGESTED_QUESTIONS.map((q) => (
+            <button
+              key={q}
+              type="button"
+              onClick={() => setQuestion(q)}
+              className="rounded-full border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-1 text-xs text-zinc-600 dark:text-zinc-400 hover:border-indigo-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+            >
+              {q}
+            </button>
+          ))}
+        </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">

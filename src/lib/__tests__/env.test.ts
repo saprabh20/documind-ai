@@ -7,6 +7,7 @@ const validBase = {
   NEXT_PUBLIC_SUPABASE_URL: 'https://test-project.supabase.co',
   SUPABASE_SERVICE_ROLE_KEY: 'test-service-role-key',
   NEXT_PUBLIC_SUPABASE_ANON_KEY: 'test-anon-key',
+  RATE_LIMIT_SECRET: 'a'.repeat(32),
 }
 
 describe('serverEnvSchema', () => {
@@ -107,6 +108,32 @@ describe('serverEnvSchema', () => {
       // All required fields should be mentioned
       expect(errorMessage).toContain('GEMINI_API_KEY')
       expect(errorMessage).toContain('SUPABASE_SERVICE_ROLE_KEY')
+      expect(errorMessage).toContain('RATE_LIMIT_SECRET')
     })
+  })
+})
+
+describe('RATE_LIMIT_SECRET validation', () => {
+  it('throws when RATE_LIMIT_SECRET is missing', () => {
+    expect(() =>
+      parseEnv({ ...validBase, RATE_LIMIT_SECRET: undefined }),
+    ).toThrow('RATE_LIMIT_SECRET')
+  })
+
+  it('throws when RATE_LIMIT_SECRET is shorter than 32 characters', () => {
+    expect(() =>
+      parseEnv({ ...validBase, RATE_LIMIT_SECRET: 'short' }),
+    ).toThrow()
+  })
+
+  it('accepts a 32-character RATE_LIMIT_SECRET', () => {
+    const result = parseEnv({ ...validBase, RATE_LIMIT_SECRET: 'a'.repeat(32) })
+    expect(result.RATE_LIMIT_SECRET).toBe('a'.repeat(32))
+  })
+
+  it('accepts a long hex secret', () => {
+    const secret = 'deadbeef'.repeat(8) // 64 chars
+    const result = parseEnv({ ...validBase, RATE_LIMIT_SECRET: secret })
+    expect(result.RATE_LIMIT_SECRET).toBe(secret)
   })
 })
