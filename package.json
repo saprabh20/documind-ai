@@ -10,7 +10,9 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "seed:eval": "npx tsx scripts/seed-eval-dataset.ts",
+    "eval": "npx tsx scripts/run-evaluation.ts"
   },
   "dependencies": {
     "@google/genai": "^2.28.0",

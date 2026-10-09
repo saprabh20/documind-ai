@@ -141,6 +141,31 @@ export interface EvalRunSummary extends EvalRun {
   results: EvalResult[]
 }
 
+/** A single eval_result row joined with the question text and expected chunk IDs.
+ *  Computed at query time — not a stored DB row. */
+export interface EvalResultWithQuestion extends EvalResult {
+  question: string
+  expectedChunkIds: string[]
+}
+
+/** EvalResultWithQuestion further enriched with pre-computed per-question display metrics. */
+export interface EvalResultForDisplay extends EvalResultWithQuestion {
+  hitAt5: boolean
+  recallAt5: number
+}
+
+/** Full evaluation run data enriched with per-K metrics computed from eval_results.
+ *  Used by the evaluation page and GET /api/evaluation/latest. */
+export interface EvalRunDetail extends EvalRun {
+  results: EvalResultForDisplay[]
+  hitAt1: number
+  hitAt3: number
+  recallAt1: number
+  recallAt3: number
+  medianLatencyMs: number
+  p95LatencyMs: number
+}
+
 // ============================================================
 // RAG pipeline internal types
 // ============================================================

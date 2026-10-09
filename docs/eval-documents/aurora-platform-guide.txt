@@ -1,0 +1,206 @@
+Aurora Analytics Platform
+User Guide and Technical Reference
+Version 5.1 | October 2026
+
+INTRODUCTION
+
+Aurora is a cloud-native analytics platform designed for data teams that need flexible,
+scalable data analysis without the overhead of managing infrastructure. Aurora connects to
+your existing data sources, provides collaborative workspaces for your team, and delivers
+insights through dashboards, scheduled reports, and a powerful distributed query engine.
+
+This guide covers system requirements, feature overview, pricing tiers, support policies,
+API access, and data retention. It is intended for platform administrators, data engineers,
+and technical users evaluating Aurora for their organization.
+
+Aurora is hosted entirely in the cloud. There is nothing to install on your local machine
+other than a supported web browser. The platform scales automatically with your workload,
+and there are no servers for you to provision or manage.
+
+SYSTEM REQUIREMENTS
+
+Aurora is a browser-based platform and requires no local installation. The following minimum
+requirements apply to the user's browser environment for optimal performance.
+
+Hardware Requirements
+- Processor: A minimum of 4 CPU cores is recommended for smooth operation of Aurora's
+  interactive query editor and dashboard rendering engine. Systems with fewer cores may
+  experience slower rendering times for complex dashboards.
+- Memory: A minimum of 8 GB RAM is required. 16 GB RAM is recommended for working with
+  large exported datasets in the Aurora Desktop companion application.
+- Storage: 20 GB of free disk space for local caching of exported reports and temporary
+  query result files.
+- Network: A stable internet connection with a minimum of 10 Mbps upload and download
+  speed. Latency below 100 ms to the Aurora servers is recommended for real-time
+  collaborative editing.
+
+Browser Support
+Aurora fully supports the two most recent stable releases of Google Chrome and Mozilla
+Firefox. Safari version 16 and later is also supported. Microsoft Internet Explorer and
+the legacy (non-Chromium) version of Microsoft Edge are not supported. Aurora recommends
+Chrome for the best performance with large datasets and real-time dashboard updates.
+
+File Uploads
+Aurora supports data file uploads through both the web interface and the API. The maximum
+size for a single file upload is 2 GB. Each workspace has a storage quota based on the
+subscription plan: Starter workspaces are limited to 50 GB total storage, Pro workspaces
+are limited to 500 GB, and Enterprise workspaces have configurable storage quotas agreed
+upon at contract time.
+
+FEATURE OVERVIEW
+
+Query Engine
+Aurora's distributed query engine supports ANSI SQL with extensions for time-series
+operations, window functions, and geospatial queries. Queries are compiled and optimized
+before execution. Large result sets exceeding 10,000 rows are automatically paginated in
+the query editor to maintain browser performance.
+
+Dashboards and Reports
+Users can create interactive dashboards containing up to 50 widgets per dashboard. Widgets
+support bar charts, line charts, scatter plots, geographic maps, pivot tables, and custom
+HTML embeds. Reports can be scheduled for automated delivery via email or Slack. Dashboard
+sharing supports view-only and full-edit permission levels.
+
+Collaboration Features
+Aurora provides shared workspaces where team members can collaboratively author SQL queries,
+annotate datasets with comments, and co-edit dashboards simultaneously. Workspace
+administrators control member roles and access permissions at the workspace level.
+
+Data Connectors
+Aurora includes native connectors for PostgreSQL, MySQL, Snowflake, Google BigQuery, Amazon
+Redshift, and Amazon S3. JDBC and ODBC connectors are available for Pro and Enterprise
+customers. Custom connectors can be developed using the Aurora Connector SDK, available to
+Enterprise customers.
+
+PRICING AND SUBSCRIPTION TIERS
+
+Starter Plan
+Price: $29 per month ($23.20 per month when billed annually)
+- Up to 5 users per workspace
+- 50 GB storage quota
+- 6 months of data retention
+- REST API access included
+- Standard support: initial response within 24 hours on business days
+- Community forum access
+
+Pro Plan
+Price: $99 per month ($79.20 per month when billed annually)
+- Up to 25 users per workspace
+- 500 GB storage quota
+- 3 years of data retention
+- REST API and GraphQL API access
+- Webhook support for event-driven integrations
+- Single Sign-On (SSO) support
+- Priority support: initial response within 4 hours, available 7 days per week
+- Advanced report scheduling (minimum interval: 1 hour)
+
+Enterprise Plan
+Price: Custom pricing (annual billing only)
+- Unlimited users per workspace
+- Configurable storage and retention policies
+- REST API, GraphQL API, and Connector SDK access
+- Dedicated support with a named account manager
+- Response time: initial response within 1 hour, 24 hours per day, 365 days per year
+- SLA with financial remedies for downtime
+- Data residency options (US, EU, APAC)
+
+Annual Billing Discount
+All plans offer a discount of 20% on the effective monthly rate when billed annually.
+Annual subscriptions are charged as a single upfront payment for the full year. Mid-term
+downgrades from annual to monthly billing are not permitted. Upgrades to a higher tier take
+effect immediately and are prorated for the remaining billing period.
+
+SINGLE SIGN-ON (SSO)
+
+SSO is available on Pro and Enterprise plans. Aurora supports the following industry-standard
+authentication protocols:
+- SAML 2.0 (Security Assertion Markup Language)
+- OpenID Connect (OIDC)
+
+The following identity providers have been tested and are officially supported by Aurora:
+- Microsoft Entra ID (formerly Azure Active Directory)
+- Okta
+- Google Workspace
+
+To configure SSO for your workspace, navigate to Workspace Settings, then Security, then
+Single Sign-On. You will need the metadata URL or XML configuration file from your identity
+provider. For assistance with Enterprise SSO configuration, contact enterprise@aurora.io.
+
+Once SSO is configured, all workspace members will be required to authenticate through the
+configured identity provider. Aurora supports just-in-time (JIT) user provisioning: users
+who authenticate via SSO for the first time are automatically added to the workspace with
+a default role that the administrator configures in advance.
+
+API ACCESS
+
+REST API
+Aurora's REST API follows the OpenAPI 3.1 specification. All endpoints require authentication
+using a Bearer token. The REST API base URL is https://api.aurora.io/v1. API keys are
+generated and managed from Workspace Settings, under the API Keys section. Each workspace
+can have up to 10 active API keys simultaneously.
+
+GraphQL API
+Aurora's GraphQL API is available to Pro and Enterprise customers. The GraphQL endpoint is
+located at https://api.aurora.io/graphql. The GraphQL API supports both queries and
+mutations, as well as real-time subscriptions via WebSockets. Interactive schema documentation
+and a browser-based query explorer are available at https://api.aurora.io/graphql/docs.
+
+Webhooks
+Webhook support is available on Pro and Enterprise plans. Aurora can deliver event
+notifications to any publicly accessible HTTP endpoint. Supported webhook event types include
+query completion, scheduled report delivery, workspace membership changes, and data connector
+health status changes. All webhook payloads are signed using HMAC-SHA256. The signature is
+delivered in the X-Aurora-Signature header for verification by the receiving endpoint.
+
+SUPPORT
+
+Support Channels
+All Aurora customers have access to the following support resources:
+- Email support: support@aurora.io (available to all plans)
+- In-app live chat: available to Pro and Enterprise customers
+- Phone support: available to Enterprise customers only
+- Dedicated Slack channel: available to Enterprise customers only
+
+Response Time Guarantees by Plan
+- Starter: Initial response within 24 hours on business days (Monday through Friday,
+  excluding public holidays)
+- Pro: Initial response within 4 hours, 7 days per week including weekends and public
+  holidays
+- Enterprise: Initial response within 1 hour, 24 hours per day, 365 days per year
+
+Escalation Procedures
+For Enterprise customers, a named account manager serves as the primary escalation contact
+for non-critical issues. Critical production issues classified as Priority 1 are escalated
+directly to the Aurora on-call engineering team within 15 minutes of initial contact from
+the account manager.
+
+DATA RETENTION
+
+Data Retention by Plan
+Aurora retains all ingested data in accordance with your subscription tier:
+- Starter plan: data is retained for 6 months from the date of ingestion
+- Pro plan: data is retained for 3 years from the date of ingestion
+- Enterprise plan: configurable retention policy, minimum 1 year and maximum 10 years
+
+Data that reaches the end of its retention period is permanently and irreversibly deleted.
+Aurora does not provide data recovery for expired records. Enterprise customers can configure
+different retention policies for individual datasets from Workspace Settings under Data
+Management.
+
+Data Export
+Users may export their data at any time from the Aurora interface regardless of plan.
+Exports are available in CSV, JSON, and Apache Parquet formats. For large datasets, Aurora
+generates a secure download link that remains valid for 72 hours.
+
+Compliance and Data Residency
+Aurora is SOC 2 Type II certified and fully GDPR compliant. By default, all data is stored
+in Amazon Web Services us-east-1 (Northern Virginia). Enterprise customers may request
+alternative data residency regions at no additional cost: EU West (eu-west-1, Ireland) or
+Asia Pacific Southeast (ap-southeast-1, Singapore).
+
+---
+Aurora Analytics Inc.
+Support: support@aurora.io
+Enterprise inquiries: enterprise@aurora.io
+System status: status.aurora.io
+Documentation: docs.aurora.io

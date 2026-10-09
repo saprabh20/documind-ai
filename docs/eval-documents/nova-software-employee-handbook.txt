@@ -1,0 +1,260 @@
+Nova Software Inc.
+Employee Handbook
+Version 3.2 | Effective January 1, 2026
+
+INTRODUCTION
+
+Welcome to Nova Software Inc. This handbook describes the policies, benefits, and expectations
+that apply to all full-time employees. Part-time employees and contractors should refer to their
+specific agreements for differences. Nova Software reserves the right to update these policies
+at any time with reasonable notice to employees.
+
+Nova Software was founded in 2014 with the belief that great software comes from great people.
+Our mission is to build tools that help distributed teams work together more effectively. As we
+grow, maintaining a strong culture of transparency, ownership, and mutual respect is essential.
+This handbook reflects our commitment to creating a workplace where everyone can do their best work.
+
+Nothing in this handbook constitutes a contract of employment. Employment at Nova Software is
+at-will unless a separate written agreement states otherwise.
+
+SECTION 1: WORK HOURS AND ATTENDANCE
+
+1.1 Standard Work Hours
+
+Nova Software operates on a flexible schedule. Employees are expected to be available during
+core hours from 10:00 AM to 3:00 PM in their local time zone, Monday through Friday. Outside
+of core hours, employees may arrange their eight-hour workday as needed, provided they meet
+their responsibilities and attend required meetings. The company does not track time by the
+minute; what matters is output and availability during core hours.
+
+1.2 Overtime
+
+Non-exempt employees must obtain manager approval before working more than 40 hours per week.
+Approved overtime is compensated at 1.5 times the standard hourly rate. Exempt employees are
+not eligible for overtime compensation but are expected to manage their workload within a
+sustainable schedule. If a manager becomes aware that an exempt employee is regularly working
+excessive hours, they should immediately discuss workload and priorities with the employee.
+
+1.3 Attendance and Punctuality
+
+Employees are expected to notify their manager at least one hour before the start of their
+workday if they will be late or absent. Repeated unexcused absences may result in disciplinary
+action up to and including termination. A pattern of late arrivals during core hours will be
+addressed through the standard performance review process.
+
+SECTION 2: PAID TIME OFF
+
+2.1 Annual Leave
+
+Full-time employees accrue 18 days of paid annual leave per calendar year, credited monthly
+at 1.5 days per month. New employees begin accruing leave from their first day of employment.
+Unused leave may be carried forward to the following year, subject to a maximum carryover of
+10 days. Leave above the carryover limit is forfeited at year end unless extenuating
+circumstances are approved by HR.
+
+Annual leave requests must be submitted at least one week in advance for durations of 1-3 days,
+and at least four weeks in advance for leave of 4 days or more. Approval is subject to business
+needs and manager discretion.
+
+2.2 Federal Holidays
+
+Nova Software observes the 10 federally recognized public holidays in the United States. These
+holidays are provided in addition to annual leave and do not count against the 18-day annual
+leave accrual. A list of observed holidays for the upcoming year is published on the internal
+HR portal each November.
+
+2.3 Sick Leave
+
+Employees are entitled to up to 10 days of paid sick leave per calendar year. Sick leave does
+not carry over between calendar years and is not paid out upon separation. For absences
+exceeding three consecutive days, employees may be required to provide documentation from a
+licensed healthcare provider. Sick leave may be used to care for an immediate family member
+under the same conditions.
+
+2.4 Bereavement Leave
+
+Employees may take up to 5 days of paid bereavement leave following the death of an immediate
+family member (spouse, child, or parent), and up to 2 days for extended family members
+(siblings, grandparents, or in-laws). Employees needing additional time may use accrued annual
+leave or request unpaid leave.
+
+SECTION 3: REMOTE WORK POLICY
+
+3.1 Eligibility
+
+Remote work is available to employees who have completed their 6-month probationary period
+and whose role does not require regular on-site presence. Eligibility is determined by the
+employee's manager in consultation with HR. Certain client-facing roles may have additional
+on-site requirements.
+
+3.2 Remote Work Schedule
+
+Eligible employees may work remotely up to 3 days per week. At least 2 days per week must be
+worked from the designated Nova Software office or an approved co-working location. Remote days
+may not be accumulated or carried forward to future weeks. Employees on performance improvement
+plans may have remote work privileges temporarily suspended at the manager's discretion.
+
+3.3 Home Office Requirements
+
+Employees working remotely are responsible for maintaining a suitable workspace with reliable
+internet connectivity (minimum 25 Mbps download speed) and a quiet environment appropriate
+for video calls. Nova Software provides a home office stipend to support these requirements
+(see Section 5.2). Employees must ensure their workspace meets all applicable ergonomic
+guidelines published on the internal health and safety portal.
+
+3.4 Data Security While Remote
+
+Employees must use the company VPN when accessing internal systems from outside the office
+network. Personal devices must not be used to store company data. Any security incident must
+be reported to the IT department within 24 hours. Failure to comply with data security
+requirements while working remotely may result in loss of remote work privileges.
+
+SECTION 4: PERFORMANCE REVIEWS
+
+4.1 Review Cycle
+
+Performance reviews are conducted twice per year: in February and August. The February review
+covers the second half of the prior calendar year, and the August review covers the first half
+of the current year. Managers are responsible for scheduling reviews within the designated
+review window (January 15 through February 28 for the winter cycle; July 15 through August 31
+for the summer cycle). Missing a review window requires HR approval to reschedule.
+
+4.2 Rating Scale
+
+Performance is assessed on a four-point scale:
+- Exceeds Expectations: Consistently surpasses goals and demonstrates exemplary impact
+- Meets Expectations: Fully achieves goals and meets the standard for the role
+- Needs Improvement: Partially meets goals; a development plan is required
+- Unsatisfactory: Fails to meet core expectations; immediate action is required
+
+4.3 Performance Improvement Plans
+
+Employees who receive an Unsatisfactory rating in two consecutive review cycles may be placed
+on a Performance Improvement Plan (PIP). The PIP outlines specific, measurable objectives and
+a 90-day timeline for improvement. Employees must be given at least 30 days written notice
+before a PIP begins. A manager may also initiate a PIP outside the standard review cycle if
+performance concerns are severe enough to warrant immediate action.
+
+4.4 Merit Increases
+
+Merit-based salary increases are determined following the August review cycle and take effect
+on October 1. Increases are based on performance rating, market data, and budget availability.
+There is no guaranteed minimum increase. Employees rated Exceeds Expectations are eligible for
+increases of up to 10% of their base salary. Employees rated Needs Improvement or Unsatisfactory
+are not eligible for merit increases in that cycle.
+
+SECTION 5: EXPENSE REIMBURSEMENT
+
+5.1 Business Travel
+
+Nova Software reimburses reasonable and necessary business travel expenses. Airfare must be
+booked in economy class for flights under 6 hours; business class may be approved for flights
+exceeding 6 hours with prior manager authorization. Hotel accommodations are reimbursable up
+to $200 per night in standard markets and $350 per night in high-cost cities including New York,
+San Francisco, London, and Tokyo. Meal expenses during business travel are reimbursed up to
+$50 per day, inclusive of gratuity but exclusive of alcohol.
+
+5.2 Home Office Stipend
+
+Employees who work remotely at least 1 day per week are eligible for a home office stipend of
+$75 per month. This stipend is added directly to the employee's paycheck and is intended to
+offset costs for internet service, utilities, and office supplies. The stipend is considered
+taxable income and will appear on the employee's W-2 form at year end.
+
+5.3 Client Entertainment
+
+Client entertainment expenses above $100 require advance written approval from the employee's
+manager. Receipts must be submitted within 30 days of the expense. Reimbursement requests
+submitted after 60 days will not be honored under any circumstances. Expenses for entertainment
+not directly related to business purposes are not reimbursable.
+
+SECTION 6: EQUIPMENT POLICY
+
+6.1 Laptop Stipend
+
+Nova Software provides a laptop procurement stipend of $1,500 every 3 years. Employees may
+use this stipend to purchase a laptop through the company's approved vendor portal. All laptops
+purchased with the stipend remain company property. Employees wishing to keep their laptop upon
+departure may purchase it at its current depreciated book value, as determined by the finance
+department.
+
+6.2 Peripheral Equipment
+
+In addition to the laptop stipend, employees receive an annual peripheral equipment budget of
+$300 per year. This budget covers monitors, keyboards, mice, webcams, headsets, and ergonomic
+accessories such as standing desk converters. Unused portions of the peripheral budget do not
+carry over between calendar years. Peripheral purchases are also company property unless the
+employee elects to purchase them at depreciated value upon departure.
+
+6.3 Equipment Return
+
+All company equipment must be returned within 5 business days of an employee's last working
+day. Equipment not returned in good working condition, ordinary wear excepted, will result in
+the replacement cost being deducted from the employee's final paycheck in accordance with
+applicable state law.
+
+SECTION 7: EMPLOYEE BENEFITS
+
+7.1 Health Insurance
+
+Nova Software covers 80% of the monthly premium for the standard health insurance plan for
+the employee. Dependent coverage is available; Nova Software covers 50% of the additional
+premium for dependent enrollment. Employees may enroll in or modify health coverage during the
+annual open enrollment period in November, or following a qualifying life event such as marriage,
+birth, adoption, or loss of other coverage.
+
+7.2 Dental and Vision
+
+Nova Software covers 60% of the monthly premium for dental and vision coverage. These plans
+are offered through the same open enrollment process as health insurance. Orthodontia coverage
+is included in the dental plan with a lifetime maximum benefit of $2,000.
+
+7.3 Retirement Plan
+
+Nova Software offers a 401(k) retirement savings plan administered through Vanguard. The
+company matches employee contributions dollar-for-dollar up to 4% of the employee's annual
+base salary. Employees are fully vested in company match contributions after 2 years of service.
+Contributions may begin on the first payroll cycle after 90 days of employment.
+
+SECTION 8: PARENTAL LEAVE
+
+8.1 Paid Parental Leave
+
+Nova Software provides 12 weeks of fully paid parental leave to all eligible employees
+following the birth, adoption, or foster placement of a child. Leave must be initiated within
+12 months of the qualifying event. Both primary and secondary caregivers are eligible for the
+same 12-week benefit. Employees must provide at least 30 days notice of planned parental leave
+whenever practicable.
+
+8.2 Additional Unpaid Leave
+
+Employees who exhaust their paid parental leave may request up to 4 additional weeks of
+unpaid leave under this policy. This unpaid leave runs concurrently with any applicable
+federal or state family leave entitlements. Benefits coverage continues during both the paid
+and approved unpaid portions of parental leave.
+
+SECTION 9: RESIGNATION AND SEPARATION
+
+9.1 Resignation Notice
+
+Employees with less than 2 years of service are expected to provide a minimum of 2 weeks
+written notice of resignation. Employees with 2 or more years of service are expected to
+provide a minimum of 4 weeks written notice. Nova Software appreciates longer notice periods
+when operationally feasible and will accommodate transition requests where possible.
+
+9.2 Severance
+
+In the event of involuntary separation other than termination for cause, employees are eligible
+for severance equal to 1 week of base salary per completed year of service, up to a maximum of
+8 weeks. Severance payment is contingent on the employee signing a separation and release
+agreement within 21 days of receiving the agreement.
+
+9.3 Final Paycheck
+
+Final paychecks, including any accrued but unused annual leave, will be issued on the next
+regular payroll date following the employee's last working day, or earlier as required by
+applicable state law.
+
+---
+Nova Software Inc. | Human Resources Department
+Questions: hr@novasoftware.io | Internal HR Portal: hr.novasoftware.internal

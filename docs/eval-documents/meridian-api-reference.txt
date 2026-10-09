@@ -1,0 +1,227 @@
+Meridian Platform API Reference
+Version 2.4 | Last Updated: October 2026
+
+OVERVIEW
+
+The Meridian API enables developers to integrate with the Meridian analytics platform
+programmatically. All API endpoints use HTTPS and return JSON-encoded responses. The API
+follows REST conventions with predictable resource-oriented URLs. This document covers
+authentication, rate limiting, pagination, error handling, webhooks, and batch operations.
+
+The Meridian API is designed around two principles: simplicity and predictability. Every
+response follows a consistent structure, every error includes a machine-readable code, and
+every list endpoint supports the same pagination parameters. This consistency reduces
+integration time and makes it straightforward to build robust client libraries.
+
+BASE URL
+
+All API requests must be made to the following base URL:
+
+    https://api.meridian.io/v2
+
+Requests to the legacy v1 API are no longer supported as of January 1, 2026. All client
+integrations must be updated to use the v2 base URL. The v2 API is not backwards-compatible
+with v1 in several areas, including authentication format and error response structure.
+
+AUTHENTICATION
+
+All requests to the Meridian API must be authenticated using an API key. Include your API
+key as a Bearer token in the Authorization header of every request:
+
+    Authorization: Bearer mk_live_a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4
+
+Requests without a valid Authorization header will receive an HTTP 401 response.
+
+API Key Format
+
+Meridian API keys follow a strict format:
+- Live keys: mk_live_ prefix followed by exactly 32 hexadecimal characters
+- Test keys: mk_test_ prefix followed by exactly 32 hexadecimal characters
+
+Live keys interact with production data and incur billing charges. Test keys interact with an
+isolated sandbox environment and do not incur usage charges. Test and live keys cannot be
+interchanged; a test key cannot access production resources.
+
+API Key Security Best Practices
+
+Keep your API keys strictly confidential. Never embed them in client-side JavaScript, mobile
+application binaries, or public version control repositories. Meridian recommends rotating API
+keys every 90 days as a security best practice. If you believe a key has been compromised,
+revoke it immediately from the API Keys section of your Meridian dashboard and issue a
+replacement key. Revoked keys stop working within 60 seconds of revocation.
+
+Idempotency Keys
+
+For non-idempotent operations (POST, PUT, PATCH), include an idempotency key in the
+X-Request-ID header to prevent duplicate operations during network retries:
+
+    X-Request-ID: unique-client-generated-identifier
+
+Meridian stores idempotency keys and their associated responses for 24 hours. Retrying a
+request with the same X-Request-ID within this window returns the cached response rather
+than performing the operation a second time. Idempotency keys must be unique per operation
+and should be generated using a UUID or similar high-entropy identifier.
+
+RATE LIMITING
+
+Meridian applies per-API-key rate limits based on your subscription tier:
+
+Tier          | Requests per Minute
+Free          | 100 requests per minute
+Pro           | 1,000 requests per minute
+Enterprise    | 10,000 requests per minute
+
+When a rate limit is exceeded, the API returns HTTP 429 Too Many Requests. The response
+includes a Retry-After header indicating the number of seconds to wait before retrying.
+Meridian uses a sliding-window algorithm; burst traffic up to 2x the per-minute limit is
+permitted for intervals shorter than 5 seconds, allowing brief spikes without triggering
+the rate limiter.
+
+Rate limit consumption is tracked per API key. If you have multiple API keys under the same
+account, each key has its own independent rate limit quota.
+
+PAGINATION
+
+All list endpoints in the Meridian API use cursor-based pagination. Cursor values are opaque
+strings returned by the server; do not attempt to construct or decode them.
+
+Query Parameters
+
+- after: Cursor from the previous response to retrieve the next page of results
+- before: Cursor from the previous response to retrieve the previous page
+- max_per_page: Number of records to return (default: 50, maximum: 500)
+
+Example Request
+
+    GET /v2/reports?max_per_page=100&after=cursor_abc123
+
+Pagination Response
+
+    {
+      "data": [ ... ],
+      "pagination": {
+        "next_cursor": "cursor_xyz789",
+        "prev_cursor": "cursor_abc123",
+        "has_more": true,
+        "total_count": 1247
+      }
+    }
+
+Sort Order
+
+List endpoints accept sort and order query parameters. Supported sort fields are created_at
+and updated_at. Supported order values are asc and desc. The default is created_at desc.
+
+Filtering
+
+Most list endpoints support equality, range, and prefix filtering using the syntax
+filter[field][operator]=value. Supported operators: eq, gt, lt, gte, lte, prefix.
+
+ERRORS
+
+Meridian uses standard HTTP status codes to communicate the outcome of each request.
+
+200  OK              - The request succeeded
+201  Created         - A new resource was successfully created
+204  No Content      - The request succeeded with no response body
+400  Bad Request     - Invalid parameters or malformed JSON
+401  Unauthorized    - Missing, invalid, or revoked API key
+403  Forbidden       - Valid key but the key lacks permission for this resource
+404  Not Found       - The requested resource does not exist
+409  Conflict        - Idempotency key reused with different request body
+429  Too Many Requests - Rate limit exceeded; see Retry-After header
+503  Service Unavailable - Meridian is undergoing scheduled maintenance
+
+All error responses use the following JSON structure:
+
+    {
+      "error": {
+        "code": "invalid_api_key",
+        "message": "The provided API key is invalid or has been revoked.",
+        "request_id": "req_9Xk2mN7pLq"
+      }
+    }
+
+The code field is a machine-readable string for programmatic handling. The message field
+is a human-readable description. The request_id field enables Meridian support staff to
+locate request logs when troubleshooting issues.
+
+WEBHOOKS
+
+Meridian can send real-time event notifications to HTTP endpoints you register.
+
+Creating a Webhook
+
+Register a webhook endpoint from the Meridian dashboard or via POST /v2/webhooks. Specify
+the target URL, the event types to subscribe to, and an optional description. Meridian
+generates a unique signing secret for each registered endpoint.
+
+Signature Verification
+
+Every webhook delivery is signed using HMAC-SHA256. The signature is included in the
+X-Meridian-Signature header in the following format:
+
+    X-Meridian-Signature: sha256=<hex_encoded_digest>
+
+To verify a webhook, compute the HMAC-SHA256 digest of the raw request body using your
+endpoint's signing secret as the key. Compare the computed digest to the value in the
+X-Meridian-Signature header using a constant-time string comparison to prevent timing
+attacks. Reject any delivery where the signatures do not match.
+
+Retry Policy
+
+If your webhook endpoint returns a non-2xx HTTP status, Meridian automatically retries the
+delivery up to 5 times using exponential backoff: after 1 minute, 5 minutes, 30 minutes,
+2 hours, and finally 8 hours. After 5 consecutive failures, the event is marked as failed
+and no further retries are attempted. A list of failed events is available from the Meridian
+dashboard for manual inspection and replay.
+
+BATCH OPERATIONS
+
+For workflows requiring multiple API calls, Meridian offers a batch endpoint to reduce
+latency and round trips.
+
+Endpoint: POST /v2/batch
+
+A single batch request may contain up to 100 individual operations. Each operation in the
+batch specifies a method, relative path, and optional JSON body. Batch requests consume a
+single slot against the rate limit, but each individual operation within the batch is
+counted separately for billing purposes.
+
+    POST /v2/batch
+    {
+      "operations": [
+        { "method": "GET", "path": "/v2/reports/rpt_123" },
+        { "method": "DELETE", "path": "/v2/reports/rpt_456" }
+      ]
+    }
+
+DATA RETENTION
+
+Meridian retains account data according to subscription tier:
+
+Free tier         - 90 days
+Pro tier          - 2 years
+Enterprise tier   - Unlimited (configurable per-workspace retention policies available)
+
+After the retention period expires, data is permanently and irreversibly deleted. Enterprise
+customers may configure custom per-workspace retention policies ranging from 1 year up to the
+unlimited maximum. Data retention policy changes take effect at the beginning of the next
+billing cycle.
+
+VERSIONING
+
+Meridian uses date-stamped versioning for breaking API changes. Non-breaking additions such
+as new fields and new endpoints may be added to an existing version without advance notice.
+Breaking changes are announced at minimum 90 days before a new version is introduced. The
+current stable version is v2. Version v1 was retired on January 1, 2026.
+
+SUPPORT
+
+For API-related issues, contact developer-support@meridian.io or visit the developer forum
+at developers.meridian.io. System status and incident history are published at
+status.meridian.io.
+
+---
+Meridian Platform Inc. | Developer Relations
+Documentation: developers.meridian.io
