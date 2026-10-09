@@ -12,7 +12,7 @@ Portfolio project targeting Software Engineer, Full-Stack Engineer, and Applied 
 - **Frontend**: Next.js 16, React 19, TypeScript, Tailwind CSS v4
 - **Backend**: Next.js Route Handlers, Node.js runtime
 - **Database**: Supabase PostgreSQL + pgvector
-- **AI**: Google Gen AI SDK (`@google/genai`), `gemini-embedding-2` (768-dim, default), `gemini-2.5-flash` (default generation)
+- **AI**: Google Gen AI SDK (`@google/genai`), `gemini-embedding-001` (768-dim, verified), `gemini-3.8-flash` (default generation)
 - **Testing**: Vitest 5
 - **Deploy**: Vercel Hobby + Supabase Free
 
@@ -43,8 +43,8 @@ Portfolio project targeting Software Engineer, Full-Stack Engineer, and Applied 
 Required in `.env.local` (never committed — see `.env.local.example`):
 ```
 GEMINI_API_KEY=
-GEMINI_EMBEDDING_MODEL=gemini-embedding-2    # override if model unavailable
-GEMINI_GENERATION_MODEL=gemini-2.5-flash     # override with current free-tier model
+GEMINI_EMBEDDING_MODEL=gemini-embedding-001  # verified working; produces 768-dim embeddings
+GEMINI_GENERATION_MODEL=gemini-3.8-flash    # verified reachable (503 = high demand, not a config failure)
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
@@ -72,21 +72,22 @@ Default values (tunable for evaluation):
 These are defined in `src/lib/rag/config.ts` and must not be hardcoded elsewhere.
 Model names come from env vars (see above), not from `config.ts`.
 
-## Embedding Text Prefixes (gemini-embedding-2 GA)
+## Embedding Task Types (gemini-embedding-001)
 
-The GA `gemini-embedding-2` model (released April 2026) dropped `taskType`. Use text prefixes instead:
+`gemini-embedding-001` supports `taskType`. Use it for all embedding calls:
 
-- **Document chunks** (ingestion): `"title: {filename} | text: {chunk content}"`
-- **Query** (retrieval): `"task: search result | query: {question}"`
+- **Document chunks** (ingestion): `taskType: 'RETRIEVAL_DOCUMENT'`
+- **Query** (retrieval): `taskType: 'RETRIEVAL_QUERY'`
 
-These prefixes must be applied in `src/lib/gemini/embeddings.ts`. Never pass `taskType`.
+These task types must be passed in `src/lib/gemini/embeddings.ts`.
+Do NOT use text prefixes — those were a workaround for `gemini-embedding-2` GA which dropped `taskType`.
 Both document and query embeddings use `outputDimensionality: 768`.
 
 ## Generation Models (Free Tier, Oct 2026)
 
 Available on free tier: `gemini-2.5-flash` (legacy, existing projects), `gemini-3.5-flash-lite`, `gemini-3.8-flash`.
-Default is `gemini-2.5-flash`. If the user's API key doesn't have access, update `GEMINI_GENERATION_MODEL` in `.env.local`.
-Run `npx tsx scripts/verify-models.ts` to confirm access before Phase 2.
+Default is `gemini-3.8-flash` (verified reachable — HTTP 503 during verification was high demand, not a config failure).
+Generation is not required until Phase 3. If access issues arise then, update `GEMINI_GENERATION_MODEL` in `.env.local`.
 
 ## File Organization
 

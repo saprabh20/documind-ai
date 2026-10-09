@@ -72,6 +72,22 @@ export interface TextChunk {
   chunkIndex: number
 }
 
+export interface InsertDocumentData {
+  filename: string
+  fileType: FileType
+  fileSizeBytes: number
+  pageCount: number | null
+}
+
+export interface InsertChunkData {
+  documentId: string
+  chunkIndex: number
+  content: string
+  pageNumber: number | null
+  tokenCount: number
+  embedding: number[]
+}
+
 // ============================================================
 // API request/response types
 // ============================================================

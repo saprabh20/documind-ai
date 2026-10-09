@@ -57,29 +57,28 @@ Edge case: if the final chunk would be fewer than 50 tokens, merge it with the p
 
 Module: `src/lib/gemini/embeddings.ts`
 
-**IMPORTANT — `gemini-embedding-2` GA uses text prefixes, not `taskType`:**
+**`gemini-embedding-001` supports `taskType` — use it:**
 
-The GA version (released April 2026) dropped the `taskType` parameter. Instead, the content string is prefixed to communicate task context:
+- **Document chunks** (ingestion): `taskType: 'RETRIEVAL_DOCUMENT'`
+- **Queries** (retrieval): `taskType: 'RETRIEVAL_QUERY'`
 
-- **Document chunks** (ingestion): `"title: {filename} | text: {chunk content}"`
-- **Queries** (retrieval): `"task: search result | query: {question text}"`
-
-Using the correct prefix improves retrieval quality. Both use the same model and `outputDimensionality`.
+Using the correct task type improves retrieval quality. Both use the same model and `outputDimensionality`.
+Do NOT use text prefixes — those were a workaround specific to `gemini-embedding-2` GA.
 
 ```typescript
 // Document chunk embedding (ingestion)
-const embeddingModel = process.env.GEMINI_EMBEDDING_MODEL ?? 'gemini-embedding-2'
+const embeddingModel = process.env.GEMINI_EMBEDDING_MODEL ?? 'gemini-embedding-001'
 const response = await ai.models.embedContent({
   model: embeddingModel,
-  contents: `title: ${filename} | text: ${chunk.content}`,
-  config: { outputDimensionality: 768 },
+  contents: chunk.content,
+  config: { taskType: 'RETRIEVAL_DOCUMENT', outputDimensionality: 768 },
 })
 
 // Query embedding (retrieval)
 const response = await ai.models.embedContent({
   model: embeddingModel,
-  contents: `task: search result | query: ${question}`,
-  config: { outputDimensionality: 768 },
+  contents: question,
+  config: { taskType: 'RETRIEVAL_QUERY', outputDimensionality: 768 },
 })
 ```
 
@@ -108,14 +107,14 @@ On any failure after step 1, delete the partially inserted document row (cascade
 Module: `src/lib/gemini/embeddings.ts`
 
 The user's question is embedded with the same model and dimensions as document chunks.
-**Use the query prefix** (not `taskType`) for `gemini-embedding-2` GA:
+Use `taskType: 'RETRIEVAL_QUERY'` for `gemini-embedding-001`:
 
 ```typescript
-const embeddingModel = process.env.GEMINI_EMBEDDING_MODEL ?? 'gemini-embedding-2'
+const embeddingModel = process.env.GEMINI_EMBEDDING_MODEL ?? 'gemini-embedding-001'
 const response = await ai.models.embedContent({
   model: embeddingModel,
-  contents: `task: search result | query: ${question}`,
-  config: { outputDimensionality: 768 },
+  contents: question,
+  config: { taskType: 'RETRIEVAL_QUERY', outputDimensionality: 768 },
 })
 ```
 
@@ -160,7 +159,7 @@ The chunk IDs are embedded in the prompt so the LLM can reference them in citati
 
 Module: `src/lib/gemini/generation.ts`
 
-Model: `gemini-2.5-flash`
+Model: read from `process.env.GEMINI_GENERATION_MODEL` (default: `gemini-3.8-flash`)
 
 Prompt structure:
 
@@ -241,8 +240,8 @@ export const RAG_CONFIG = {
 }
 
 // Model names are NOT in RAG_CONFIG — they come from environment variables:
-//   process.env.GEMINI_EMBEDDING_MODEL  (default: 'gemini-embedding-2')
-//   process.env.GEMINI_GENERATION_MODEL (default: 'gemini-2.5-flash')
+//   process.env.GEMINI_EMBEDDING_MODEL  (default: 'gemini-embedding-001')
+//   process.env.GEMINI_GENERATION_MODEL (default: 'gemini-3.8-flash')
 // Verify with: npx tsx scripts/verify-models.ts
 ```
 
